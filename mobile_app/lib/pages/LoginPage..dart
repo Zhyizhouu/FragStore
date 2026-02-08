@@ -101,6 +101,30 @@ class _LoginPageState extends State<LoginPage> {
 
             ElevatedButton(
               onPressed: () {
+                String username = _usernameControoller.text;
+                String password = _passwordControoller.text;
+
+                if (username.isEmpty || password.isEmpty) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text("Please fill the username and password"),
+                      backgroundColor: Colors.red,
+                    ),
+                  );
+                  return;
+                }
+
+                if (_errorMessaageUsername != null ||
+                    _errorMessaagePassword != null) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text("Please fix the wrong inputs"),
+                      backgroundColor: Colors.red,
+                    ),
+                  );
+                  return;
+                }
+
                 String currUsername = _usernameControoller.text;
                 showDialog(
                   context: context,
