@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:mobile_app/pages/ItemPage.dart';
 import 'package:mobile_app/pages/LoginPage..dart';
 
 class Homepage extends StatefulWidget {
@@ -113,7 +114,18 @@ class _HomepageState extends State<Homepage> {
               ListTile(
                 leading: Icon(Icons.shopping_bag),
                 title: Text("Products"),
-                onTap: () => Navigator.pop(context),
+                onTap: () {
+                  Navigator.pop(context);
+                  Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return ItemPage(username: widget.username);
+                      },
+                    ),
+                    (route) => false,
+                  );
+                },
               ),
               const Divider(),
               ListTile(

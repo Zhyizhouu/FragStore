@@ -33,17 +33,23 @@ let products = [
     }
 ]
 
-app.get('/api/products', (req, res) => {
-    res.json(products)
-})
+app.get('/api/products', (req, res) => { //Read => getAll
+    res.json({
+        messaage: "Success Fetching Products",
+        data: products,
+    });
+});
 
-app.get('/api/products/:id', (req, res) => {
+app.get('/api/products/:id', (req, res) => { //Read => getAllProduct
     const product = products.find(p => p.id === req.params.id)
     if (!product) return res.status(404).json({messaage: "Product isn;t found"})
-    res.json(product)
-})
+    res.json({
+        message: "Product Found",
+        data: product
+    });
+});
 
-app.post('/api/products', (req, res) => {
+app.post('/api/products', (req, res) => { //Create => newProduct
     const newProduct = {
         id : Date.now().toString(),
         name : req.body.name,
@@ -54,7 +60,7 @@ app.post('/api/products', (req, res) => {
     }
     products.push(newProduct)
     res.status(201).json(newProduct)
-})
+});
 
 app.put('/api/products/:id', (req, res) => {
     const index = products.findIndex(p => p.id === req.params.id)

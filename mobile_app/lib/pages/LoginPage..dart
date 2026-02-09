@@ -63,9 +63,6 @@ class _LoginPageState extends State<LoginPage> {
                   if (value.length < 6) {
                     _errorMessaageUsername =
                         "Username must be more than 6 letterss";
-                  } else if (value.length > 12) {
-                    _errorMessaagePassword =
-                        "Username must be less than 12 letters";
                   } else {
                     _errorMessaageUsername = null;
                   }
