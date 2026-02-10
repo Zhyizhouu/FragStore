@@ -16,6 +16,7 @@ class ItemPage extends StatefulWidget {
 
 class _ItemPageState extends State<ItemPage> {
   bool _isLoading = true;
+
   List<Product> _products = [];
 
   @override
@@ -131,7 +132,10 @@ class _ItemPageState extends State<ItemPage> {
                       context,
                       MaterialPageRoute(
                         builder: (context) {
-                          return DetailPage(product: product);
+                          return DetailPage(
+                            product: product,
+                            username: widget.username,
+                          );
                         },
                       ),
                     );

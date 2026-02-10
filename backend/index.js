@@ -6,6 +6,30 @@ const port = 3000
 app.use(cors())
 app.use(express.json())
 
+let reviews = []
+
+app.post('/api/review', (req, res) => { 
+
+    const rev = {productID, username, comment, rating} = req.body;
+    console.log("Review masuk, \nUser: " + username + "\nProductID: " + productID + "\nComment: " + comment);
+    const newReview = {productID, username, comment, rating, date: new Date()};
+    reviews.push(newReview);
+
+    res.status(201).json({
+        messaage: "Review Succesfully Submitted",
+        data: newReview
+    });
+
+});
+
+app.get('/api/review/:productID', (req, res) => {
+    const rev = reviews.filter(r => r.productID === req.params.productID);
+    res.json({
+        message: "Success fetching all reviews",
+        data: rev
+    })
+});
+
 let products = [
     {
         id: "p1",
@@ -20,7 +44,7 @@ let products = [
         name: "Razer Huntsman V2",
         description: "Optical gaming keyboard with near-zero latency and analog optical switches.",
         price: 3499000,
-        imageUrl: "https://assets3.razerzone.com/S-eA1E_5aJ1P2bKjZz6fX_t8u7g=/1500x1000/https%3A%2F%2Fhybrismediaprod.blob.core.windows.net%2Fsys-master-phoenix-images-container%2Fh0d%2Fh3e%2F9186641608734%2Frazer-huntsman-v2-tenkeyless-linear-optical-switch-black-500x500.png",
+        imageUrl: "https://assets2.razerzone.com/images/pnx.assets/f2ba430b48cc45a90075a905e0eac073/razer-huntsman-v3-pro-ogimage-1200x630-v2.webp",
         rating: 4.6
     },
     {
@@ -28,7 +52,7 @@ let products = [
         name: "HyperX Cloud II Wireless",
         description: "Legendary comfort and durability with high-speed wireless connection.",
         price: 1899000,
-        imageUrl: "https://row.hyperx.com/cdn/shop/products/hyperx_cloud_ii_wireless_red_1_main_900x.png?v=1661292021",
+        imageUrl: "https://row.hyperx.com/cdn/shop/files/hyperx_cloud_alpha_wireless_1_main.jpg?v=1745914432&width=1445",
         rating: 4.7
     }
 ]
