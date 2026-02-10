@@ -122,6 +122,8 @@ class _DetailPageState extends State<DetailPage> {
 
   List<Review> _reviews = [];
 
+  //Additional Commit Commands => Aku tambahin command ini buat commit
+
   Future<void> fetchReviews() async {
     String apiUrl = "http://10.0.2.2:3000/api/review/${widget.product.id}";
 
